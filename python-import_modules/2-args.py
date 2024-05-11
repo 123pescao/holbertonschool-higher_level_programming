@@ -3,7 +3,7 @@ import sys
 
 
 def main():
-    arg_count = len(sys.argv) - 1  # Subtract 1 to not count the script name itself
+    arg_count = len(sys.argv) - 1
     if arg_count == 0:
         print("0 arguments.")
     elif arg_count == 1:
