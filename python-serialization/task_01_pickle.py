@@ -20,12 +20,8 @@ class CustomObject:
 
     def serialize(self, filename):
         """Serialize the object to a file using pickle."""
-        try:
             with open(filename, 'wb') as file:
             pickle.dump(self, file)
-        except (FileNotFoundError, pickle.PickleError):
-            print("Error: File doesn't exist or is malformed")
-            return None
 
     @classmethod
     def deserialize(cls, filename):
