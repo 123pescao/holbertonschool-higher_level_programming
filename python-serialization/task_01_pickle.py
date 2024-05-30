@@ -20,7 +20,7 @@ class CustomObject:
 
     def serialize(self, filename):
         """Serialize the object to a file using pickle."""
-            with open(filename, 'wb') as file:
+        with open(filename, 'wb') as file:
             pickle.dump(self, file)
 
     @classmethod
