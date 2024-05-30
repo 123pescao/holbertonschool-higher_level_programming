@@ -20,8 +20,9 @@ class CustomObject:
 
     def serialize(self, filename):
         """Serialize the object to a file using pickle."""
-        with open(filename, 'wb') as file:
-            pickle.dump(self, file)
+        try:
+            with open(filename, 'wb') as file:
+                pickle.dump(self, file)
         except Exception as e:
             print("Serialization error:", e)
             return None
