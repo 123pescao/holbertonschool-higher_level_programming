@@ -14,7 +14,9 @@ class CustomObject:
 
     def display(self):
         """Display the object's attributes."""
-        print(f"Name: {self.name}\nAge: {self.age}\nIs Student: {self.is_student}")
+        print(f"Name:", self.name)
+        print("Age:", self.age)
+        print("Is Student:", self.is_student)
 
     def serialize(self, filename):
         """Serialize the object to a file using pickle."""
