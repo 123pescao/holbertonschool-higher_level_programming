@@ -1,3 +1,6 @@
+#!/bin/usr/python3
+""" Module conversion csv to json """
+
 import csv
 import json
 
