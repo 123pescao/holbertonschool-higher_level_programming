@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+"""Module for class named Custom Object"""
+
 import pickle
 
 

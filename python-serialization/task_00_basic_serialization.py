@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+""" Module Task 0"""
+
 import json
 
 
