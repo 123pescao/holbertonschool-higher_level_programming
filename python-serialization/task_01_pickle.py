@@ -22,6 +22,9 @@ class CustomObject:
         """Serialize the object to a file using pickle."""
         with open(filename, 'wb') as file:
             pickle.dump(self, file)
+        except Exception as e:
+            print("Serialization error:", e)
+            return None
 
     @classmethod
     def deserialize(cls, filename):
@@ -29,5 +32,6 @@ class CustomObject:
         try:
             with open(filename, 'rb') as file:
                 return pickle.load(file)
-        except (FileNotFoundError, pickle.PickleError):
+        except Exception as e:
+            print("Deserialization error:", e)
             return None
