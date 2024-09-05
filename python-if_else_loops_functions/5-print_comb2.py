@@ -4,4 +4,3 @@ for t in range(100):
         print("{:02d}, ".format(t), end="")
     else:
         print(t)
-        
