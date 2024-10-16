@@ -20,7 +20,9 @@ def fetch_and_print_posts():
 
 def fetch_and_save_posts():
     """Fetches all posts from JSONPlaceholder"""
-    response = requests.get('https://jsonplaceholder.typicode.com/posts')
+    url = 'https://jsonplaceholder.typicode.com/posts'
+    posts = []
+    response = requests.get(url)
     print(f"Status Code: {response.status_code}")
     #If request successful, parse JSON in python
     if response.status_code == 200:
