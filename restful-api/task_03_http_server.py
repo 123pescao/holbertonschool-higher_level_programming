@@ -9,12 +9,13 @@ PORT = 8000
 
 
 class APIHandler(BaseHTTPRequestHandler):
+    """Handles HTTP GET requests"""
 
     def do_GET(self):
-        """Send simple text"""
+        """Handle GET requests to different endpoints"""
         if self.path == "/data":
             self.send_response(200)
-            self.send_header("Content-type", "applications/json")
+            self.send_header("Content-type", "application/json")  # Correct JSON content type
             self.end_headers()
 
             data = {
@@ -30,20 +31,26 @@ class APIHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(bytes("OK", "utf-8"))
 
+        elif self.path == "/":
+            self.send_response(200)
+            self.send_header("Content-type", "text/html")
+            self.end_headers()
+            self.wfile.write(bytes("Welcome to the API! Use /data or /status", "utf-8"))
+
         else:
             self.send_response(404)
             self.send_header("Content-type", "text/html")
             self.end_headers()
-
             self.wfile.write(bytes("Endpoint not found", "utf-8"))
 
+
 def run(server_class=HTTPServer, handler_class=APIHandler, host=HOST, port=PORT):
-        """Start and Run server on port 8000"""
-        server_address=('', port)
-        httpd = server_class(server_address, handler_class)
-        print(f"Starting server on {host}:{port}...")
-        httpd.serve_forever()
+    """Start and Run server on port 8000"""
+    server_address = (host, port)
+    httpd = server_class(server_address, handler_class)
+    print(f"Starting server on {host}:{port}...")
+    httpd.serve_forever()
+
 
 if __name__ == "__main__":
     run()
-
