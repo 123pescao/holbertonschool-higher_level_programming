@@ -35,7 +35,7 @@ class APIHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-type", "text/html")
             self.end_headers()
-            self.wfile.write(bytes("Welcome to the API! Use /data or /status", "utf-8"))
+            self.wfile.write(bytes("Hello, this is a simple API! Use /data or /status", "utf-8"))
 
         else:
             self.send_response(404)
