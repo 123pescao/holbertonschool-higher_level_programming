@@ -15,7 +15,9 @@ def home():
 
 @app.route('/data')
 def get_usernames():
-    return jsonify(list(users.keys()))
+    if not users:
+        return jsonify([]), 200
+    return jsonify(list(users.keys())), 200
 
 @app.route('/status')
 def status():
@@ -29,14 +31,13 @@ def get_user(username):
     else:
         return jsonify({"error": "User not found"}), 404
 
-@app.route('/add_user', methods=['POST'])
+@app.route('/add_user', methods=['GET', 'POST'])
 def add_user():
     data = request.get_json()
     if not data or not isinstance(data, dict):
         return jsonify({"error": "Invalid JSON"}), 400
 
     username = data.get('username')
-
     if not username:
         return jsonify({"error": "Username is required"}), 400
 
