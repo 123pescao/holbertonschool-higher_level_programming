@@ -31,9 +31,13 @@ def get_user(username):
     else:
         return jsonify({"error": "User not found"}), 404
 
-@app.route('/add_user', methods=['GET', 'POST'])
+@app.route('/add_user', methods=['POST'])
 def add_user():
+    if request.content_type != 'application/json':
+        return jsonify({"error": "Content-Type must be application/json"}), 400
+
     data = request.get_json()
+
     if not data or not isinstance(data, dict):
         return jsonify({"error": "Invalid JSON"}), 400
 
