@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 """Simple API using Flask"""
-from flask import Flask
-from flask import request
-from flask import jsonify
-
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -11,33 +8,35 @@ users = {}
 
 @app.route('/')
 def home():
+    """Home route"""
     return "Welcome to the Flask API!"
 
 @app.route('/data')
 def get_usernames():
-    if not users:
-        return jsonify([]), 200
+    """Returns a list of usernames"""
     return jsonify(list(users.keys())), 200
 
 @app.route('/status')
 def status():
-    return "OK"
+    """Returns the status of the API"""
+    return "OK", 200
 
 @app.route('/users/<username>')
 def get_user(username):
+    """Returns user details for a given username"""
     user = users.get(username)
     if user:
-        return jsonify(user)
+        return jsonify(user), 200
     else:
         return jsonify({"error": "User not found"}), 404
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
+    """Adds a new user"""
     if request.content_type != 'application/json':
         return jsonify({"error": "Content-Type must be application/json"}), 400
 
     data = request.get_json()
-
     if not data or not isinstance(data, dict):
         return jsonify({"error": "Invalid JSON"}), 400
 
